@@ -1,14 +1,17 @@
 import 'dotenv/config';
-import express from 'express';
+import express, { urlencoded } from 'express';
 import authRouter from './routers/authRouter.js';
+import movieRouter from './routers/movieRouter.js';
 import { connectDB, disconnectDB } from './config/db.js';
 
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 // api routes
 app.use('/auth', authRouter);
+app.use('/movies', movieRouter);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the API');
