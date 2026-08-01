@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express, { urlencoded } from 'express';
 import authRouter from './routers/authRouter.js';
 import movieRouter from './routers/movieRouter.js';
+import watchlistRouter from './routers/watchlistRouter.js';
 import { connectDB, disconnectDB } from './config/db.js';
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.urlencoded({extended:true}));
 // api routes
 app.use('/auth', authRouter);
 app.use('/movies', movieRouter);
+app.use('/watchlist', watchlistRouter);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the API');
